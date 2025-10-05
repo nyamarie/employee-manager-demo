@@ -67,3 +67,27 @@ window.Employee = Employee;
 window.Manager = Manager;
 window.Company = Company;
 window.acme = acme;
+
+// Company class to hold employees
+class Company {
+    constructor(name) {
+    this.name = name;
+    this.employees = []; // array of Employee or Manager instances
+    }
+    
+    
+    addEmployee(employee) {
+    if (!(employee instanceof Employee)) {
+    throw new TypeError("addEmployee expects an instance of Employee or a subclass");
+    }
+    this.employees.push(employee);
+    }
+    
+    
+    listEmployees(logger = console.log) {
+    logger(`Company: ${this.name}`);
+    this.employees.forEach((emp, idx) => {
+    logger(`${idx + 1}. ${emp.describe()}`);
+    });
+    }
+    }
